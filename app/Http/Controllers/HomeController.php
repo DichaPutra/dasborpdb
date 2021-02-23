@@ -48,7 +48,8 @@ class HomeController extends Controller {
 
     public function emptyExcel()
     {
-        
+        DataImport::truncate();
+        return back();
     }
 
 }
