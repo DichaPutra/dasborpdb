@@ -13,7 +13,8 @@ class HomeController extends Controller {
      *
      * @return void
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
@@ -22,16 +23,24 @@ class HomeController extends Controller {
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index() {
+    public function index()
+    {
         return view('home');
     }
 
-    public function importExcel(Request $request) {
-        \Excel::import(new ExcelImport, $request->import_file);
-
-        \Session::put('success', 'Your file is imported successfully in database.');
-
-        return back();
+    
+    
+    
+    public function importExcel(Request $request)
+    {
+        try {
+            \Excel::import(new ExcelImport, $request->import_file);
+            \Session::put('success', 'Your file is imported successfully in database.');
+            return back();
+        } catch (\Exception $e) {
+            \Session::put('error', $e->getMessage());
+            return back();
+        }
     }
 
 }
