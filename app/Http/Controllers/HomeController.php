@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\DataImport;
+use App\Imports\ExcelImport;
 
-class HomeController extends Controller
-{
+class HomeController extends Controller {
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('auth');
     }
 
@@ -21,8 +22,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
+    public function index() {
         return view('home');
     }
+
+    public function importExcel(Request $request) {
+        \Excel::import(new ExcelImport, $request->import_file);
+
+        \Session::put('success', 'Your file is imported successfully in database.');
+
+        return back();
+    }
+
 }

@@ -8,14 +8,14 @@
                 <div class="card-header">Form Input Excel</div>
 
                 <div class="card-body">
-                    <form name="postexcel" method="POST" enctype="multipart/form-data" action="#">
+                    <form name="postexcel" method="POST" enctype="multipart/form-data" action="{{ route('importExcel') }}">
                         @csrf
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <button type="submit" class="btn btn-outline-secondary" type="button" >Submit</button>
                             </div>
                             <div class="custom-file">
-                                <input type="file" accept=".xls,.xlsx,.csv" class="custom-file-input" aria-describedby="inputGroupFileAddon03">
+                                <input name="import_file"type="file" accept=".xls,.xlsx,.csv" class="custom-file-input" aria-describedby="inputGroupFileAddon03">
                                 <label class="custom-file-label" for="inputGroupFile03">Choose file</label>
                             </div>
                         </div>

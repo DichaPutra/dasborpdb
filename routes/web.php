@@ -32,3 +32,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('importExcel', [HomeController::class, 'importExcel'])->name('importExcel');
