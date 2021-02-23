@@ -4,6 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
+            
+            <!-- ===== FORM INPUT ===== -->
             <div class="card">
                 <div class="card-header">Form Input Excel</div>
 
@@ -21,12 +23,41 @@
                             </div>
                         </div>
                         @if (session('error'))
-                            {{session('error')}}
+                        {{session('error')}}
                         @endif
                     </form>
                 </div>
             </div><br>
 
+            <!-- ===== DATA TABLE ===== -->
+            <div class="card">
+                <div class="card-header">Data Table</div>
+
+                <div class="card-body">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col">Komoditi</th>
+                                <th scope="col">Output</th>
+                                <th scope="col">Konsumsi Antara</th>
+                                <th scope="col">Pajak kurang Subsidi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($dataimport as $dataimport)
+                            <tr>
+                                <th scope="row">{{$dataimport->komoditi}}</th>
+                                <td>{{$dataimport->output}}</td>
+                                <td>{{$dataimport->konsumsiantara}}</td>
+                                <td>{{$dataimport->pajakkurangsubsidi}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div><br>
+            
+            <!-- =====  ===== -->
             <div class="card">
                 <div class="card-header">Data Visual</div>
 

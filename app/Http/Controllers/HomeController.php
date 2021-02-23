@@ -25,12 +25,15 @@ class HomeController extends Controller {
      */
     public function index()
     {
-        return view('home');
+        $dataimport = DataImport::select('komoditi',
+                        'output',
+                        'konsumsiantara',
+                        'pajakkurangsubsidi')
+                ->orderBy('komoditi')
+                ->get();
+        return view('home')->with('dataimport', $dataimport);
     }
 
-    
-    
-    
     public function importExcel(Request $request)
     {
         try {
