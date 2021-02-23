@@ -31,7 +31,7 @@ class HomeController extends Controller {
                         'pajakkurangsubsidi')
                 ->orderBy('komoditi')
                 ->get();
-        return view('home')->with('dataimport', $dataimport);
+        return view('home',['dataimport' => $dataimport, 'statusimport' => '']);
     }
 
     public function importExcel(Request $request)
@@ -44,6 +44,11 @@ class HomeController extends Controller {
             \Session::put('error', $e->getMessage());
             return back();
         }
+    }
+
+    public function emptyExcel()
+    {
+        
     }
 
 }

@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            
+
             <!-- ===== FORM INPUT ===== -->
             <div class="card">
                 <div class="card-header">Form Input Excel</div>
@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         @if (session('error'))
-                        {{session('error')}}
+                        <div style="color: red;">{{Session::pull('error')}}</div>
                         @endif
                     </form>
                 </div>
@@ -31,7 +31,12 @@
 
             <!-- ===== DATA TABLE ===== -->
             <div class="card">
-                <div class="card-header">Data Table</div>
+                <div class="card-header">
+                    Data Table
+                    <a href="{{route('emptyExcel')}}">
+                        <button style="margin-left: 85%;"type="submit" class="btn btn-danger btn-sm" type="button" >Empty</button>
+                    </a>
+                </div>
 
                 <div class="card-body">
                     <table class="table table-sm">
@@ -56,7 +61,7 @@
                     </table>
                 </div>
             </div><br>
-            
+
             <!-- =====  ===== -->
             <div class="card">
                 <div class="card-header">Data Visual</div>

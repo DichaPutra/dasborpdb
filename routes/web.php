@@ -35,3 +35,4 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/dashboard', [HomeController::class, 'index'])->name('home');
 
 Route::post('importExcel', [HomeController::class, 'importExcel'])->name('importExcel');
+Route::get('emptyExcel', [HomeController::class, 'emptyExcel'])->name('emptyExcel');
