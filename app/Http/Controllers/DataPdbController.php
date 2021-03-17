@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DataPdrbController extends Controller {
+class DataPdbController extends Controller {
 
     /**
      * CONSTRUCT
@@ -19,7 +19,7 @@ class DataPdrbController extends Controller {
      */
     public function index()
     {
-        echo 'Data PDRB VIEW';
+        return view('DataPdb');
     }
 
 }

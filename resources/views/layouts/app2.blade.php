@@ -135,7 +135,7 @@
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                               document.getElementById('logout-form').submit();">
+                                           document.getElementById('logout-form').submit();">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         {{ __('Logout') }}
                                     </a>
@@ -204,7 +204,7 @@
             </div>
         </div>
 
-        
+
         <!-- Bootstrap core JavaScript-->
         <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -247,15 +247,30 @@
         <script src="{{ asset('js/demo/proportionalShift.js') }}"></script>
         <script src="{{ asset('js/demo/differentialShift.js') }}"></script>
 
+        <!-- ===============================================
+        --- JS Dashboard Wilayah 
+        --> ================================================
+        
+        <!-- Line chart Laju PDRB Provinsi -->
+        <script src="{{ asset('js/demo/lajuPDRB.js') }}"></script>
+
+        <!-- Pie chart Sektor Basis -->
+        <script src="{{ asset('js/demo/sektorBasis.js') }}"></script> 
+
+        <!-- National Share, Proportional Shift, Differential Shift scripts -->
+        <script src="{{ asset('js/demo/nationalShare2.js') }}"></script>
+        <script src="{{ asset('js/demo/proportionalShift2.js') }}"></script>
+        <script src="{{ asset('js/demo/differentialShift2.js') }}"></script> 
+
 
 
 
 
         <!-- Page specific script -->
         <script>
-            $(function () {
-                bsCustomFileInput.init();
-            });
+                                           $(function () {
+                                           bsCustomFileInput.init();
+                                           });
         </script>
         @yield('script')
     </body>

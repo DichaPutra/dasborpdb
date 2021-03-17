@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DataKomoditiController;
-use App\Http\Controllers\DataPdrbController;
+use App\Http\Controllers\DataPdbController;
 use App\Http\Controllers\KategoriSektorController;
 use App\Http\Controllers\WilayahProvinsiController;
 
@@ -35,7 +35,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Auth::routes();
 
-Route::get('/', [KategoriSektorController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
 Route::post('importExcel', [HomeController::class, 'importExcel'])->name('importExcel');
@@ -60,4 +60,4 @@ Route::get('DataKomoditi', [DataKomoditiController::class, 'index'])->name('Data
 /*
  * Data PDRB
  */
-Route::get('DataPdrb', [DataPdrbController::class, 'index'])->name('DataPdrb');
+Route::get('DataPdrb', [DataPdbController::class, 'index'])->name('DataPdb');

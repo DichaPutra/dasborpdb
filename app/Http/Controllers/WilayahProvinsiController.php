@@ -19,7 +19,7 @@ class WilayahProvinsiController extends Controller {
      */
     public function index()
     {
-        echo 'Wilayah Provinsi Controller';
+        return view('WilayahProvinsi');
     }
 
 }

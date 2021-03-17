@@ -15,7 +15,7 @@
 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
         <a class="collapse-item" href="{{route('DataKomoditi')}}">Data Komoditi</a>
-        <a class="collapse-item" href="{{route('DataPdrb')}}">Data PDRB</a>
+        <a class="collapse-item" href="{{route('DataPdb')}}">Data PDB</a>
     </div>
 </div>
 @endsection

@@ -19,7 +19,7 @@ class DataKomoditiController extends Controller {
      */
     public function index()
     {
-        echo 'Data Komoditi CONTROLLER';
+        return view('DataKomoditi');
     }
 
 }
