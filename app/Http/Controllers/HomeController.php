@@ -9,9 +9,7 @@ use App\Imports\ExcelImport;
 class HomeController extends Controller {
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * CONSTRUCT
      */
     public function __construct()
     {
@@ -19,9 +17,7 @@ class HomeController extends Controller {
     }
 
     /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * FUNCTION
      */
     public function index()
     {
@@ -31,7 +27,7 @@ class HomeController extends Controller {
                         'pajakkurangsubsidi')
                 ->orderBy('komoditi')
                 ->get();
-        return view('home',['dataimport' => $dataimport, 'statusimport' => '']);
+        return view('home', ['dataimport' => $dataimport, 'statusimport' => '']);
     }
 
     public function importExcel(Request $request)
