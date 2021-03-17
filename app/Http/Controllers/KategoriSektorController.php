@@ -19,7 +19,7 @@ class KategoriSektorController extends Controller {
      */
     public function index()
     {
-        echo 'Kategori Sektor CONTROLLER';
+        return view('KategoriSektor');
     }
 
 }

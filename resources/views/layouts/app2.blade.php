@@ -57,12 +57,7 @@
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Dashboard</span>
                     </a>
-                    <div id="collapseDashboard" class="collapse" aria-labelledby="headingDashboard" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{{route('KategoriSektor')}}">Kategori Sektor</a>
-                            <a class="collapse-item" href="{{route('WilayahProvinsi')}}">Wilayah Provinsi</a>
-                        </div>
-                    </div>
+                    @yield('menu1')
                 </li>
 
                 <!-- Nav Item - Master Data -->
@@ -72,12 +67,7 @@
                         <i class="fas fa-fw fa-database"></i>
                         <span>Master Data</span>
                     </a>
-                    <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{{route('DataKomoditi')}}">Data Komoditi</a>
-                            <a class="collapse-item active" href="{{route('DataPdrb')}}">Data PDRB</a>
-                        </div>
-                    </div>
+                    @yield('menu2')
                 </li>
 
                 <!-- Nav Item - Panduan -->
@@ -157,49 +147,18 @@
                             </li>
                             @endguest
 
-                            <!-- Nav Item - User Information -->
-<!--                            <li class="nav-item dropdown no-arrow"> 
-                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
-                                    <img class="img-profile rounded-circle"
-                                         src="img/undraw_profile.svg">
-                                </a>
-                                 Dropdown - User Information 
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                     aria-labelledby="userDropdown">
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Profile
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Settings
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Activity Log
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                               document.getElementById('logout-form').submit();">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        {{ __('Logout') }}
-                                    </a>
-                                </div>
-                            </li>-->
-
                         </ul>
 
                     </nav>
                     <!-- End of Topbar -->
+
 
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
                         @yield('content')
                     </div>
                     <!-- /.container-fluid -->
+
 
                 </div>
                 <!-- End of Main Content -->
@@ -245,33 +204,60 @@
             </div>
         </div>
 
+        
         <!-- Bootstrap core JavaScript-->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
+        {{ asset('') }}
         <!-- Core plugin JavaScript-->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
         <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin-2.min.js"></script>
+        <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 
         <!-- Page level plugins -->
-        <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-        <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+        <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
         <!-- Page level custom scripts -->
-        <script src="js/demo/datatables-demo.js"></script>
+        <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
 
         <!-- bs-custom-file-input -->
-        <script src="plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+        <script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+
+
+        <!-- Page level plugins -->
+        <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
+
+        <!-- Page level custom scripts -->
+        <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
+        <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
+
+        <!-- Highcharts -->
+        <script type="text/javascript" src="{{ asset('js/highcharts/highmaps.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/highcharts/exporting.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/highcharts/id-all.js') }}"></script>
+
+        <!-- Pie chart Wilayah Basis -->
+        <script src="{{ asset('js/demo/wilayahBasis.js') }}"></script>
+
+        <!-- National Share, Proportional Shift, Differential Shift scripts -->
+        <script src="{{ asset('js/demo/nationalShare.js') }}"></script>
+        <script src="{{ asset('js/demo/proportionalShift.js') }}"></script>
+        <script src="{{ asset('js/demo/differentialShift.js') }}"></script>
+
+
+
+
 
         <!-- Page specific script -->
         <script>
-                                           $(function () {
-                                               bsCustomFileInput.init();
-                                           });
+            $(function () {
+                bsCustomFileInput.init();
+            });
         </script>
-
+        @yield('script')
     </body>
 
 </html>

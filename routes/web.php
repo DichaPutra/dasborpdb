@@ -35,7 +35,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Auth::routes();
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [KategoriSektorController::class, 'index'])->name('home');
 Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
 Route::post('importExcel', [HomeController::class, 'importExcel'])->name('importExcel');
