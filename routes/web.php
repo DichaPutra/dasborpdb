@@ -35,9 +35,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Auth::routes();
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+/*
+ * Landing Page
+ */
+Route::get('/', [KategoriSektorController::class, 'index'])->name('home');
 
+
+Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 Route::post('importExcel', [HomeController::class, 'importExcel'])->name('importExcel');
 Route::get('emptyExcel', [HomeController::class, 'emptyExcel'])->name('emptyExcel');
 ;
@@ -60,4 +64,4 @@ Route::get('DataKomoditi', [DataKomoditiController::class, 'index'])->name('Data
 /*
  * Data PDRB
  */
-Route::get('DataPdrb', [DataPdbController::class, 'index'])->name('DataPdb');
+Route::get('DataPdb', [DataPdbController::class, 'index'])->name('DataPdb');
