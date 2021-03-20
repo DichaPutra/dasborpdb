@@ -65,4 +65,4 @@ Route::get('DataKomoditi', [DataKomoditiController::class, 'index'])->name('Data
  * Data PDRB
  */
 Route::get('DataPdb', [DataPdbController::class, 'index'])->name('DataPdb');
-Route::get('GenerateFormat', [DataPdbController::class, 'GenerateFormat'])->name('GenerateFormat');
+Route::post('GenerateFormat', [DataPdbController::class, 'GenerateFormat'])->name('GenerateFormat');

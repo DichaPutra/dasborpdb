@@ -25,7 +25,13 @@ class DataPdbController extends Controller {
 
     public function GenerateFormat(Request $request)
     {
-        $request->wilayah;
+        $wilayah = $request->wilayah;
+        $tahun = $request->tahun;
+        foreach ($tahun as $th)
+        {
+            
+        }
+        dd($tahun);
     }
 
 }

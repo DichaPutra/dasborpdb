@@ -38,7 +38,7 @@
             @csrf
             <div class="form-group">
                 <label>Pilih Wilayah</label>
-                <select class="form-control" style="width: 100%;">
+                <select name="wilayah" class="form-control" style="width: 100%;">
                     <option value="0">Indonesia</option>
                     <option>Aceh</option>
                     <option>Sumatera Utara</option>
@@ -52,8 +52,8 @@
             <!-- Form Pilih Tahun -->
             <div class="form-group">
                 <label>Tahun</label>
-                <select id="choices-multiple-remove-button" placeholder="Pilih hingga 5" multiple>
-                    {{ $last= date('Y')-20 }}
+                <select name="tahun[]" id="choices-multiple-remove-button" placeholder="Pilih max hingga 5" multiple>
+                    {{ $last= date('Y')-11 }}
                     {{ $now = date('Y') }}
 
                     @for ($i = $now; $i >= $last; $i--)
@@ -63,12 +63,7 @@
             </div>
 
             <div class="form-group pt-3 float-right">
-                <a href="{{route('GenerateFormat')}}" class="btn btn-primary">
-                    <span class="text">Generate Format</span>
-                </a>
-                <!--                <a href="{{asset('formatexcel/formatinput.xlsx')}}" class="btn btn-primary">
-                                    <span class="text">Generate Format</span>
-                                </a>-->
+                <input type="submit" href="{{route('GenerateFormat')}}" class="btn btn-primary" value="Generate Format">
             </div>
         </form>
     </div>
@@ -636,8 +631,8 @@
         var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
             removeItemButton: true,
             maxItemCount: 5,
-            searchResultLimit: 5,
-            renderChoiceLimit: 5
+            searchResultLimit: 8,
+            renderChoiceLimit: 8
         });
     });
 </script>
