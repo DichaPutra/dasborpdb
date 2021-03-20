@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\excelformat;
 use App\Models\wilayah;
+use App\Models\sektor;
 use App\Models\data;
+use Illuminate\Support\Facades\DB;
 
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\excelformatExport;
@@ -32,8 +34,10 @@ class DataPdbController extends Controller {
         $wilayah2 = wilayah::all();
 
         //data untuk melihat semua data pdrb
-        $pdrb = data::all();
+        $sql = 'SELECT * FROM `data` a, wilayah b, sektor c WHERE a.idWilayah = b.idWilayah AND a.idSektor = c.idSektor';
+        $pdrb = DB::select($sql);
 
+//        dd($pdrb);
         return view('DataPdb',
                 ["wilayah" => $wilayah, "wilayah2" => $wilayah2, "pdrb" => $pdrb]);
     }

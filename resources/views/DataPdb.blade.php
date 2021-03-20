@@ -153,13 +153,14 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($pdrb as $pdrb)
                     <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
+                        <td>{{$pdrb->nama_wilayah}}</td>
+                        <td>{{$pdrb->nama_sektor}}</td>
+                        <td>{{$pdrb->tahun}}</td>
+                        <td>{{$pdrb->pdrb}}</td>
                     </tr>
-
+                    @endforeach
                 </tbody>
             </table>
         </div>

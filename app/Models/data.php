@@ -13,4 +13,14 @@ class data extends Model {
     protected $fillable = ['idWilayah', 'idSektor', 'tahun', 'pdrb'];
     public $timestamps = false;
 
+    public function wilayah()
+    {
+        return $this->belongsTo('App\Models\wilayah');
+    }
+
+    public function sektor()
+    {
+        return $this->belongsTo('App\Models\sektor');
+    }
+
 }

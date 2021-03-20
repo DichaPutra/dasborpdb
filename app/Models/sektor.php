@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class wilayah extends Model {
+class sektor extends Model {
 
     use HasFactory;
 
-    protected $table = 'wilayah';
+    protected $table = 'sektor';
     public $timestamps = false;
 
     public function data()
