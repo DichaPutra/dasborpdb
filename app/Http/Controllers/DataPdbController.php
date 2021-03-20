@@ -23,20 +23,9 @@ class DataPdbController extends Controller {
         return view('DataPdb');
     }
 
-    public function GenerateFormat()
+    public function GenerateFormat(Request $request)
     {
-        Excel::create('FormatPDB', function($excel) {
-
-            // Set the title
-            $excel->setTitle('FormatPDB');
-
-            // Chain the setters
-            $excel->setCreator('chafri')
-                    ->setCompany('BPS');
-
-            // Call them separately
-            $excel->setDescription('Format Excel input data pdb');
-        })->download('xlsx');
+        $request->wilayah;
     }
 
 }

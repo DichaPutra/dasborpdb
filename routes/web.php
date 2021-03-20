@@ -41,7 +41,7 @@ Auth::routes();
 Route::get('/', [KategoriSektorController::class, 'index'])->name('home');
 Route::get('/dashboard', [KategoriSektorController::class, 'index'])->name('dashboard');
 
-
+Route::get('/contoh', [HomeController::class, 'index'])->name('contoh');
 Route::post('importExcel', [HomeController::class, 'importExcel'])->name('importExcel');
 Route::get('emptyExcel', [HomeController::class, 'emptyExcel'])->name('emptyExcel');
 ;

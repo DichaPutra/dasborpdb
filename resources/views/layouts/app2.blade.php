@@ -15,6 +15,8 @@
 
         <title>Dasbor PDB</title>
 
+
+
         <!-- Custom fonts for this template -->
         <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
         <link 
@@ -26,6 +28,10 @@
 
         <!-- Custom styles for this page -->
         <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+
+        <!-- Custom styles choices css & js -->
+        <link rel="stylesheet" href="{{asset('css/choices.min.css')}}">
+        <script src="{{asset('js/choices.min.js')}}"></script>
 
     </head>
 
@@ -250,7 +256,7 @@
         <!-- ===============================================
         --- JS Dashboard Wilayah 
         --> ================================================
-        
+
         <!-- Line chart Laju PDRB Provinsi -->
         <script src="{{ asset('js/demo/lajuPDRB.js') }}"></script>
 

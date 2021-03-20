@@ -34,11 +34,12 @@
         <h6 class="m-0 font-weight-bold text-primary">Generate Format Data Excel</h6>
     </div>
     <div class="card-body">
-        <form name="postexcel" method="POST" enctype="multipart/form-data" action="{{ route('importExcel') }}">
+        <form name="postexcel" method="POST" enctype="multipart/form-data" action="{{ route('GenerateFormat') }}">
+            @csrf
             <div class="form-group">
                 <label>Pilih Wilayah</label>
                 <select class="form-control" style="width: 100%;">
-                    <option>Indonesia</option>
+                    <option value="0">Indonesia</option>
                     <option>Aceh</option>
                     <option>Sumatera Utara</option>
                     <option>Sumatera Barat</option>
@@ -51,22 +52,23 @@
             <!-- Form Pilih Tahun -->
             <div class="form-group">
                 <label>Tahun</label>
-                <select class="form-control" style="width: 100%;">
-                    <option>2020</option>
-                    <option>2019</option>
-                    <option>2018</option>
-                    <option>2017</option>
-                    <option>2016</option>
-                </select>
+                <select id="choices-multiple-remove-button" placeholder="Pilih hingga 5" multiple>
+                    {{ $last= date('Y')-20 }}
+                    {{ $now = date('Y') }}
+
+                    @for ($i = $now; $i >= $last; $i--)
+                    <option value="{{ $i }}">{{ $i }}</option>
+                    @endfor
+                </select> 
             </div>
 
             <div class="form-group pt-3 float-right">
                 <a href="{{route('GenerateFormat')}}" class="btn btn-primary">
                     <span class="text">Generate Format</span>
                 </a>
-<!--                <a href="{{asset('formatexcel/formatinput.xlsx')}}" class="btn btn-primary">
-                    <span class="text">Generate Format</span>
-                </a>-->
+                <!--                <a href="{{asset('formatexcel/formatinput.xlsx')}}" class="btn btn-primary">
+                                    <span class="text">Generate Format</span>
+                                </a>-->
             </div>
         </form>
     </div>
@@ -628,4 +630,15 @@
 
 
 @section('script')
+<script>
+    $(document).ready(function () {
+
+        var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+            removeItemButton: true,
+            maxItemCount: 5,
+            searchResultLimit: 5,
+            renderChoiceLimit: 5
+        });
+    });
+</script>
 @endsection
