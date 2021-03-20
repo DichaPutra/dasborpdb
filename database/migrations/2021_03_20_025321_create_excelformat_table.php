@@ -14,10 +14,10 @@ class CreateExcelformatTable extends Migration {
     public function up()
     {
         Schema::create('excelformat', function (Blueprint $table) {
-            $table->biginteger('idWilayah');
-            $table->biginteger('idSektor');
+            $table->string('idWilayah');
+            $table->string('idSektor');
             $table->biginteger('tahun');
-            $table->biginteger('pdrb');
+            $table->biginteger('pdrb')->nullable();
         });
     }
 

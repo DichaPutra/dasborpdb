@@ -39,13 +39,9 @@
             <div class="form-group">
                 <label>Pilih Wilayah</label>
                 <select name="wilayah" class="form-control" style="width: 100%;">
-                    <option value="0">Indonesia</option>
-                    <option>Aceh</option>
-                    <option>Sumatera Utara</option>
-                    <option>Sumatera Barat</option>
-                    <option>Riau</option>
-                    <option>Jambi</option>
-                    <option>Sumatera Selatan</option>
+                    @foreach ($wilayah as $wilayah)
+                    <option value="{{$wilayah->idWilayah}}">{{$wilayah->nama_wilayah}}</option>
+                    @endforeach
                 </select>
             </div>
 

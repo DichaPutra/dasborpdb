@@ -14,7 +14,7 @@ class CreateWilayahTable extends Migration {
     public function up()
     {
         Schema::create('wilayah', function (Blueprint $table) {
-            $table->bigIncrements('idWilayah');
+            $table->string('idWilayah');
             $table->string('nama_wilayah');
         });
 
