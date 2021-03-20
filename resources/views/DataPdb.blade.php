@@ -27,14 +27,13 @@
     dapat dari website BPS tiap wilayah. Sebelum melakukan melakukan input file excel, data harap 
     diolah terlebih dahulu ke dalam format tabel yang telah ditentukan.</p>
 
-<!-- Input Data PDRB -->
+
+<!-- Export Excel Data Format -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Input Data PDRB</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Generate Format Data Excel</h6>
     </div>
     <div class="card-body">
-
-        <!-- Form Pilih Wilayah -->
         <form name="postexcel" method="POST" enctype="multipart/form-data" action="{{ route('importExcel') }}">
             <div class="form-group">
                 <label>Pilih Wilayah</label>
@@ -61,6 +60,29 @@
                 </select>
             </div>
 
+            <div class="form-group pt-3 float-right">
+                <a href="{{route('GenerateFormat')}}" class="btn btn-primary">
+                    <span class="text">Generate Format</span>
+                </a>
+<!--                <a href="{{asset('formatexcel/formatinput.xlsx')}}" class="btn btn-primary">
+                    <span class="text">Generate Format</span>
+                </a>-->
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Input Data PDRB -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Input Data PDRB</h6>
+    </div>
+    <div class="card-body">
+
+        <!-- Form Pilih Wilayah -->
+        <form name="postexcel" method="POST" enctype="multipart/form-data" action="{{ route('importExcel') }}">
+
+
             <!-- Form Pilih Excel -->
             <div class="form-group">
                 <label for="exampleInputFile">Pilih file excel</label>
@@ -72,7 +94,7 @@
                 </div>
             </div>
 
-            <!-- Button Tambah & Perbarui -->
+            <!-- Button -->
             <div class="form-group pt-3 float-right">
                 <input type="submit" href="#" class="btn btn-primary" value="Tambah">
                 <!--            <a href="#" class="btn btn-info">

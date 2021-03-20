@@ -39,9 +39,9 @@ Auth::routes();
  * Landing Page
  */
 Route::get('/', [KategoriSektorController::class, 'index'])->name('home');
+Route::get('/dashboard', [KategoriSektorController::class, 'index'])->name('dashboard');
 
 
-Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 Route::post('importExcel', [HomeController::class, 'importExcel'])->name('importExcel');
 Route::get('emptyExcel', [HomeController::class, 'emptyExcel'])->name('emptyExcel');
 ;
@@ -65,3 +65,4 @@ Route::get('DataKomoditi', [DataKomoditiController::class, 'index'])->name('Data
  * Data PDRB
  */
 Route::get('DataPdb', [DataPdbController::class, 'index'])->name('DataPdb');
+Route::get('GenerateFormat', [DataPdbController::class, 'GenerateFormat'])->name('GenerateFormat');
