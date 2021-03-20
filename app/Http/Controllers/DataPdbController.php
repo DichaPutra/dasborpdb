@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\excelformat;
 use App\Models\wilayah;
+use App\Models\data;
+
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\excelformatExport;
+use App\Imports\dataImport;
 
 class DataPdbController extends Controller {
 
@@ -24,11 +27,18 @@ class DataPdbController extends Controller {
     public function index()
     {
 
+        // data untuk dropdown wilayah
         $wilayah = wilayah::all();
-        return view('DataPdb', ["wilayah" => $wilayah]);
+        $wilayah2 = wilayah::all();
+
+        //data untuk melihat semua data pdrb
+        $pdrb = data::all();
+
+        return view('DataPdb',
+                ["wilayah" => $wilayah, "wilayah2" => $wilayah2, "pdrb" => $pdrb]);
     }
 
-    public function GenerateFormat(Request $request)
+    public function generateFormat(Request $request)
     {
         $wilayah = $request->wilayah;
         $tahun = $request->tahun;
@@ -46,11 +56,22 @@ class DataPdbController extends Controller {
                 $data->tahun = $th;
                 $data->pdrb = null;
                 $data->save();
-
             }
         }
 
         return (new excelformatExport)->download('formatinputpdb.xlsx');
+    }
+
+    public function ImportData(Request $request)
+    {
+        try {
+            \Excel::import(new dataImport, $request->import_file);
+            \Session::put('success', 'Your file is imported successfully in database.');
+            return back();
+        } catch (\Exception $e) {
+            \Session::put('error', $e->getMessage());
+            return back();
+        }
     }
 
 }

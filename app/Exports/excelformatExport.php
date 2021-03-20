@@ -6,13 +6,19 @@ use App\Models\excelformat;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithTitle;
 
-class excelformatExport implements FromCollection, WithHeadings {
+class excelformatExport implements FromCollection, WithHeadings, WithTitle {
 
     /**
      * @return \Illuminate\Support\Collection
      */
     use Exportable;
+
+    public function title(): string
+    {
+        return 'Data';
+    }
 
     public function headings(): array
     {
