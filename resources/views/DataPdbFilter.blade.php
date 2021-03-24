@@ -111,7 +111,14 @@
                     <label>Pilih Wilayah</label>
                     <select name="wilayah" class="form-control" onchange='this.form.submit()'>
                         @foreach ($wilayah2 as $wilayah2)
-                        <option value="{{$wilayah2->idWilayah}}">
+                        <option 
+                        <?php
+                        if ($wilayah2->idWilayah == $swil)
+                        {
+                            echo 'selected';
+                        }
+                        ?> 
+                            value="{{$wilayah2->idWilayah}}">
                             {{$wilayah2->nama_wilayah}}
                         </option>
                         @endforeach
@@ -125,22 +132,35 @@
                         {{ $now = date('Y') }}
 
                         @for ($i = $now; $i >= $last; $i--)
-                        <option value="{{ $i }}">{{ $i }}</option>
+                        <option <?php
+                        if ($i == $sth)
+                        {
+                            echo 'selected';
+                        }
+                        ?> value="{{ $i }}">{{ $i }}</option>
                         @endfor
+
+
                     </select>
                 </div>
 
-                <!-- Button Hapus Data -->
-                <div class="form-group col-lg-3 text-right mt-auto">
-                    <a href="#" class="btn btn-secondary btn-icon-split">
-                        <span class="icon text-white-50">
-                            <i class="fas fa-trash"></i>
-                        </span>
-                        <span class="text">Hapus Data</span>
-                    </a>
-                </div>
             </div>
         </form>
+        <!-- Button Hapus Data -->
+        <form method="POST" enctype="multipart/form-data" action="{{ route('pdbDelete') }}">
+            @csrf
+            <input type="hidden" name="delwilayah" value="{{$swil}}">
+            <input type="hidden" name="deltahun" value="{{$sth}}">
+            <div class=" text-right mt-auto">
+                <button type="submit" class="btn btn-danger btn-icon-split" style="margin-top: -100px;" onclick="return confirm('Are you sure you want to delete?');">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-trash"></i>
+                    </span>
+                    <span class="text">Hapus Data</span>
+                </button>
+            </div>
+        </form>
+
         <!-- Tabel Data -->
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
