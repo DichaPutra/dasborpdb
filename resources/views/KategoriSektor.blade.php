@@ -37,43 +37,40 @@
         <div class="col-lg-12 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
-                    <div class="row align-items-center">
-                        <!-- Form View Pilih Wilayah -->
-                        <div class="form-group col-lg-6">
-                            <label>Pilih Kategori Sektor</label>
-                            <select class="form-control">
-                                <option>Pertanian, Kehutanan, dan Perikanan</option>
-                                <option>Pertambangan dan Penggalian</option>
-                                <option>Industri Pengolahan</option>
-                                <option>Pengadaan Listrik dan Gas</option>
-                                <option>Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang</option>
-                                <option>Konstruksi</option>
-                                <option>Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor</option>
-                            </select>
+                    <form method="GET" enctype="multipart/form-data" action="{{ route('viewSektor') }}">
+                        @csrf
+                        <div class="row align-items-center">
+                            <!-- Form View Pilih Wilayah -->
+                            <div class="form-group col-lg-6">
+                                <label>Pilih Kategori Sektor</label>
+                                <select name="sektor" class="form-control" onchange='this.form.submit()'>
+                                    @foreach ($sektor as $sektor)
+                                    <option value="{{$sektor->idSektor}}">{{$sektor->nama_sektor}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <!-- Form View Pilih Tahun Analisis -->
+                            <div class="form-group col-lg-3">
+                                <label>Tahun Analisis</label>
+                                <select name="tahuna" class="form-control">
+                                    {{ $last= date('2010') }}
+                                    {{ $now = date('Y') }}
+
+                                    @for ($i = $now; $i >= $last; $i--)
+                                    <option value="{{ $i }}">{{ $i }}</option>
+                                    @endfor
+                                </select>
+                            </div>
+                            <!-- Form View Pilih Tahun Dasar -->
+                            <div class="form-group col-lg-3">
+                                <label>Tahun Dasar</label>
+                                <select name="tahund" class="form-control">
+                                    @for ($i = $now; $i >= $last; $i--)
+                                    <option value="{{ $i }}">{{ $i }}</option>
+                                    @endfor
+                                </select>
+                            </div>
                         </div>
-                        <!-- Form View Pilih Tahun Analisis -->
-                        <div class="form-group col-lg-3">
-                            <label>Tahun Analisis</label>
-                            <select class="form-control">
-                                <option>2020</option>
-                                <option>2019</option>
-                                <option>2018</option>
-                                <option>2017</option>
-                                <option>2016</option>
-                            </select>
-                        </div>
-                        <!-- Form View Pilih Tahun Dasar -->
-                        <div class="form-group col-lg-3">
-                            <label>Tahun Dasar</label>
-                            <select class="form-control">
-                                <option>2020</option>
-                                <option>2019</option>
-                                <option>2018</option>
-                                <option>2017</option>
-                                <option>2016</option>
-                            </select>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -168,7 +165,7 @@
                             <div class="font-weight-bold text-primary text-uppercase">Laju Pertumbuhan</div>
                             <hr>
                             <div class="text-gray-800">Tertinggi</div>
-                            <div class="h2 font-weight-bold text-gray-800">30,5</div>
+                            <div class="h2 font-weight-bold text-gray-800">30</div>
                             <div class="text-primary">Jawa Timur</div>
                             <hr>
                             <div class="text-gray-800">Terendah</div>

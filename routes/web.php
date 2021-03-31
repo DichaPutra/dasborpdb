@@ -50,6 +50,7 @@ Route::get('emptyExcel', [HomeController::class, 'emptyExcel'])->name('emptyExce
  * Kategori Sektor
  */
 Route::get('KategoriSektor', [KategoriSektorController::class, 'index'])->name('KategoriSektor');
+Route::get('viewSektor', [KategoriSektorController::class, 'viewSektor'])->name('viewSektor');
 
 /*
  * Wilayah Provinsi
