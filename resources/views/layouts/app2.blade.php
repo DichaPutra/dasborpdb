@@ -271,6 +271,15 @@
         <script type="text/javascript" src="{{ asset('js/highcharts/highmaps.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/highcharts/exporting.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/highcharts/id-all.js') }}"></script>
+        <script src="code/highcharts.js"></script>
+        <script src="code/modules/streamgraph.js"></script>
+        <script src="code/modules/series-label.js"></script>
+        <script src="code/modules/annotations.js"></script>
+        <script src="code/modules/exporting.js"></script>
+        <script src="code/modules/export-data.js"></script>
+        <script src="code/modules/accessibility.js"></script>
+        <script src="code/highcharts.js"></script>
+        <script src="code/modules/sankey.js"></script>
 
         <!-- Pie chart Wilayah Basis -->
         <script src="{{ asset('js/demo/wilayahBasis.js') }}"></script>

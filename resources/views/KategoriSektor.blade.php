@@ -351,8 +351,7 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <div class="chart-area">
-                        <canvas id="myAreaChart"></canvas>
+                    <div id="sankeycon">
                     </div>
                 </div>
             </div>
@@ -442,6 +441,28 @@ foreach ($array_kode_iso as $key => $val)
                 }
             }]
     });
+</script>
+
+<!-- Sankey Diagram -->
+<script>   
+Highcharts.chart('sankeycon', {
+
+    title: {
+        text: 'Sankey Diagram'
+    },
+    accessibility: {
+        point: {
+            valueDescriptionFormat: '{index}. {point.nama_wilayah} to {point.nama_sektor}, {point.pdrb}.'
+        }
+    },
+    series: [{
+        keys: ['nama_wilayah', 'nama_sektor', 'pdrb'],
+        data: <?php echo json_encode($sankey) ?>,
+        type: 'sankey',
+        name: 'Sankey demo series'
+    }]
+
+});
 </script>
 @endsection
 

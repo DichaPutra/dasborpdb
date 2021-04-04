@@ -45,11 +45,16 @@ class KategoriSektorController extends Controller {
         $sektor = sektor::all();
 
         //view pie chart
-        $basis = DB::select("SELECT MAX(pdrb) FROM data WHERE idSektor = $sekt AND tahun = $tha");
+        $sankey = DB::select("SELECT b.nama_wilayah, c.nama_sektor, a.pdrb FROM data a, wilayah b, sektor c WHERE a.tahun = $tha AND a.idWilayah = b.idWilayah AND a.idsektor = c.idSektor AND a.idWilayah <> 0");
 
-        dd($basis);
+        $sankeys = array();
+        foreach($sankey as $i)
+        {
+            $sankeys[] = $i->nama_wilayah;
+        }
+        var_dump($sankeys);
         return view('KategoriSektor',
-                ["wilayah" => $wilayah, "sektor" => $sektor, "basis" => $basis]);
+                ["wilayah" => $wilayah, "sektor" => $sektor, "sankey" => $sankey]);
     }
 
 }
