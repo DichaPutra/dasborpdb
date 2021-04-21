@@ -45,29 +45,26 @@
                                 <label>Pilih Kategori Sektor</label>
                                 <select name="sektor" class="form-control" onchange='this.form.submit()'>
                                     @foreach ($sektor as $sektor)
-                                    <option value="{{$sektor->idSektor}}">{{$sektor->nama_sektor}}</option>
+                                    <option value="{{$sektor->idSektor}}" @if($sektor->idSektor == $sekt) selected @endif>{{$sektor->nama_sektor}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <!-- Form View Pilih Tahun Analisis -->
                             <div class="form-group col-lg-3">
                                 <label>Tahun Analisis</label>
-                                <select name="tahuna" class="form-control">
-                                    {{ $last= date('2010') }}
-                                    {{ $now = date('Y') }}
-
-                                    @for ($i = $now; $i >= $last; $i--)
-                                    <option value="{{ $i }}">{{ $i }}</option>
-                                    @endfor
+                                <select name="tahuna" class="form-control" onchange='this.form.submit()'>
+                                    @foreach ($tahun as $tahuna)
+                                    <option value="{{$tahuna->tahun}}" @if($tahuna->tahun == $tha) selected @endif>{{$tahuna->tahun}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <!-- Form View Pilih Tahun Dasar -->
                             <div class="form-group col-lg-3">
                                 <label>Tahun Dasar</label>
-                                <select name="tahund" class="form-control">
-                                    @for ($i = $now; $i >= $last; $i--)
-                                    <option value="{{ $i }}">{{ $i }}</option>
-                                    @endfor
+                                <select name="tahund" class="form-control" onchange='this.form.submit()'>
+                                    @foreach ($tahun as $tahund)
+                                    <option value="{{$tahund->tahun}}" @if($tahund->tahun == $thd) selected @endif>{{$tahund->tahun}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -146,7 +143,13 @@
                     <hr>
                     <div class="text-center">
                         <div class="font-weight-bold text-success mb-2">Wilayah Basis</div>
-                        <div class="text-gray-800">Jawa Timur, Jawa Tengah, Jawa Barat, Aceh, Bali, Banten, Papua, Riau, Kalimantan Tengah</div>
+                        <div class="text-gray-800">
+                            @if($basis != NULL)
+                            @foreach ($basis as $basis)
+                                {{ $basis }};
+                            @endforeach
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
@@ -184,14 +187,16 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col text-center">
                             <div class="font-weight-bold text-success text-uppercase">National Share</div>
+                            @if($maxns and $minns != NULL)
                             <hr>
                             <div class="text-gray-800">Tertinggi</div>
-                            <div class="h2 font-weight-bold text-gray-800">20,5</div>
-                            <div class="text-success">Jawa Tengah</div>
+                            <div class="h2 font-weight-bold text-gray-800">{{$maxns->ns}}</div>
+                            <div class="text-success">{{$maxns->nama_wilayah}}</div>
                             <hr>
                             <div class="text-gray-800">Terendah</div>
-                            <div class="h2 font-weight-bold text-gray-800">8,8</div>
-                            <div class="text-success">Kalimantan Selatan</div>
+                            <div class="h2 font-weight-bold text-gray-800">{{$minns->ns}}</div>
+                            <div class="text-success">{{$minns->nama_wilayah}}</div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -205,14 +210,16 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col text-center">
                             <div class="font-weight-bold text-info text-uppercase">Proportional Shift</div>
+                            @if($maxps and $minps != NULL)
                             <hr>
                             <div class="text-gray-800">Tertinggi</div>
-                            <div class="h2 font-weight-bold text-gray-800">8,5</div>
-                            <div class="text-info">Papua</div>
+                            <div class="h2 font-weight-bold text-gray-800">{{$maxps->ps}}</div>
+                            <div class="text-info">{{$maxps->nama_wilayah}}</div>
                             <hr>
                             <div class="text-gray-800">Terendah</div>
-                            <div class="h2 font-weight-bold text-gray-800">-1,3</div>
-                            <div class="text-info">Sumatera Barat</div>
+                            <div class="h2 font-weight-bold text-gray-800">{{$minps->ps}}</div>
+                            <div class="text-info">{{$minps->nama_wilayah}}</div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -226,14 +233,16 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col text-center">
                             <div class="font-weight-bold text-warning text-uppercase">Differential Shift</div>
+                            @if($maxds and $minds != NULL)
                             <hr>
                             <div class="text-gray-800">Tertinggi</div>
-                            <div class="h2 font-weight-bold text-gray-800">15,5</div>
-                            <div class="text-warning">Jawa Barat</div>
+                            <div class="h2 font-weight-bold text-gray-800">{{$maxds->ds}}</div>
+                            <div class="text-warning">{{$maxds->nama_wilayah}}</div>
                             <hr>
                             <div class="text-gray-800">Terendah</div>
-                            <div class="h2 font-weight-bold text-gray-800">-7,3</div>
-                            <div class="text-warning">Nusa Tenggara Barat</div>
+                            <div class="h2 font-weight-bold text-gray-800">{{$minds->ds}}</div>
+                            <div class="text-warning">{{$minds->nama_wilayah}}</div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -285,55 +294,13 @@
     <!-- Content Row -->
     <div class="row">
 
-        <!-- Pie Chart -->
-        <div class="col-xl-4 col-lg-5">
+        <!-- Sankey Diagram -->
+        <div class="col-lg-6">
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Basis vs Non-Basis</h6>
-                    <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                             aria-labelledby="dropdownMenuLink">
-                            <div class="dropdown-header">Dropdown Header:</div>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                    <div class="chart-pie pt-4 pb-2">
-                        <canvas id="myPieChart"></canvas>
-                    </div>
-                    <div class="mt-4 text-center small">
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-primary"></i> Direct
-                        </span>
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-success"></i> Social
-                        </span>
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-info"></i> Referral
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Area Chart -->
-        <div class="col-xl-8 col-lg-7">
-            <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div
-                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Laju PDB Nasional</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Sankey Diagram</h6>
                     <div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -352,6 +319,36 @@
                 <!-- Card Body -->
                 <div class="card-body">
                     <div id="sankeycon">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sankey Diagram -->
+        <div class="col-lg-6">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div
+                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Stream Graph</h6>
+                    <div class="dropdown no-arrow">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                             aria-labelledby="dropdownMenuLink">
+                            <div class="dropdown-header">Dropdown Header:</div>
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div id="streamcon">
                     </div>
                 </div>
             </div>
@@ -443,26 +440,519 @@ foreach ($array_kode_iso as $key => $val)
     });
 </script>
 
+<!-- Pie Chart -->
+<script>
+// Set new default font family and font color to mimic Bootstrap's default styling
+Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+Chart.defaults.global.defaultFontColor = '#858796';
+
+// Pie Chart Example
+var ctx = document.getElementById("wilayahBasis");
+var wilayahBasis = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ["Basis", "Non-Basis"],
+    datasets: [{
+      data: [<?php echo $cbasis; ?>, <?php echo $cnonbasis; ?>],
+      backgroundColor: ['#1cc88a', '#f0f1f5'],
+      hoverBackgroundColor: ['#17a673', '#dedfe3'],
+      hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+    },
+    legend: {
+      display: false
+    },
+    cutoutPercentage: 80,
+  },
+});
+</script>
+
+<!-- National Share -->
+<script>
+// Set new default font family and font color to mimic Bootstrap's default styling
+Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+Chart.defaults.global.defaultFontColor = '#858796';
+
+function number_format(number, decimals, dec_point, thousands_sep) {
+  // *     example: number_format(1234.56, 2, ',', ' ');
+  // *     return: '1 234,56'
+  number = (number + '').replace(',', '').replace(' ', '');
+  var n = !isFinite(+number) ? 0 : +number,
+    prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+    sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+    dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+    s = '',
+    toFixedFix = function(n, prec) {
+      var k = Math.pow(10, prec);
+      return '' + Math.round(n * k) / k;
+    };
+  // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+  s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+  if (s[0].length > 3) {
+    s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+  }
+  if ((s[1] || '').length < prec) {
+    s[1] = s[1] || '';
+    s[1] += new Array(prec - s[1].length + 1).join('0');
+  }
+  return s.join(dec);
+}
+
+// Bar Chart Example
+var ctx = document.getElementById("nationalShare");
+var nationalShare = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: <?php echo json_encode($nswilayah); ?>,
+    datasets: [{
+      label: "National Share",
+      backgroundColor: "#1cc88a",
+      hoverBackgroundColor: "#17a673",
+      borderColor: "#1cc88a",
+      data: <?php echo json_encode($nss); ?>,
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    layout: {
+      padding: {
+        left: 10,
+        right: 25,
+        top: 25,
+        bottom: 0
+      }
+    },
+    scales: {
+      xAxes: [{
+        time: {
+          unit: 'month'
+        },
+        gridLines: {
+          display: false,
+          drawBorder: false
+        },
+        
+        maxBarThickness: 25,
+      }],
+      yAxes: [{
+        ticks: {
+          maxTicksLimit: 5,
+          padding: 10,
+          // Include a dollar sign in the ticks
+          callback: function(value, index, values) {
+            return '' + number_format(value);
+          }
+        },
+        gridLines: {
+          color: "rgb(234, 236, 244)",
+          zeroLineColor: "rgb(234, 236, 244)",
+          drawBorder: false,
+          borderDash: [2],
+          zeroLineBorderDash: [2]
+        }
+      }],
+    },
+    legend: {
+      display: false
+    },
+    tooltips: {
+      titleMarginBottom: 10,
+      titleFontColor: '#6e707e',
+      titleFontSize: 14,
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+      callbacks: {
+        label: function(tooltipItem, chart) {
+          var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+          return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
+        }
+      }
+    },
+  }
+});
+</script>
+
+<!-- Proportional Shift -->
+<script>
+// Set new default font family and font color to mimic Bootstrap's default styling
+Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+Chart.defaults.global.defaultFontColor = '#858796';
+
+function number_format(number, decimals, dec_point, thousands_sep) {
+  // *     example: number_format(1234.56, 2, ',', ' ');
+  // *     return: '1 234,56'
+  number = (number + '').replace(',', '').replace(' ', '');
+  var n = !isFinite(+number) ? 0 : +number,
+    prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+    sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+    dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+    s = '',
+    toFixedFix = function(n, prec) {
+      var k = Math.pow(10, prec);
+      return '' + Math.round(n * k) / k;
+    };
+  // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+  s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+  if (s[0].length > 3) {
+    s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+  }
+  if ((s[1] || '').length < prec) {
+    s[1] = s[1] || '';
+    s[1] += new Array(prec - s[1].length + 1).join('0');
+  }
+  return s.join(dec);
+}
+
+// Bar Chart Example
+var ctx = document.getElementById("proportionalShift");
+var proportionalShift = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: <?php echo json_encode($pswilayah); ?>,
+    datasets: [{
+      label: "Proportional Shift",
+      backgroundColor: "#36b9cc",
+      hoverBackgroundColor: "#2c9faf",
+      borderColor: "#36b9cc",
+      data: <?php echo json_encode($pss); ?>,
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    layout: {
+      padding: {
+        left: 10,
+        right: 25,
+        top: 25,
+        bottom: 0
+      }
+    },
+    scales: {
+      xAxes: [{
+        time: {
+          unit: 'month'
+        },
+        gridLines: {
+          display: false,
+          drawBorder: false
+        },
+        
+        maxBarThickness: 25,
+      }],
+      yAxes: [{
+        ticks: {
+          maxTicksLimit: 5,
+          padding: 10,
+          // Include a dollar sign in the ticks
+          callback: function(value, index, values) {
+            return '' + number_format(value);
+          }
+        },
+        gridLines: {
+          color: "rgb(234, 236, 244)",
+          zeroLineColor: "rgb(234, 236, 244)",
+          drawBorder: false,
+          borderDash: [2],
+          zeroLineBorderDash: [2]
+        }
+      }],
+    },
+    legend: {
+      display: false
+    },
+    tooltips: {
+      titleMarginBottom: 10,
+      titleFontColor: '#6e707e',
+      titleFontSize: 14,
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+      callbacks: {
+        label: function(tooltipItem, chart) {
+          var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+          return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
+        }
+      }
+    },
+  }
+});
+</script>
+
+<!-- Differential Shift -->
+<script>
+// Set new default font family and font color to mimic Bootstrap's default styling
+Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+Chart.defaults.global.defaultFontColor = '#858796';
+
+function number_format(number, decimals, dec_point, thousands_sep) {
+  // *     example: number_format(1234.56, 2, ',', ' ');
+  // *     return: '1 234,56'
+  number = (number + '').replace(',', '').replace(' ', '');
+  var n = !isFinite(+number) ? 0 : +number,
+    prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+    sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+    dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+    s = '',
+    toFixedFix = function(n, prec) {
+      var k = Math.pow(10, prec);
+      return '' + Math.round(n * k) / k;
+    };
+  // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+  s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+  if (s[0].length > 3) {
+    s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+  }
+  if ((s[1] || '').length < prec) {
+    s[1] = s[1] || '';
+    s[1] += new Array(prec - s[1].length + 1).join('0');
+  }
+  return s.join(dec);
+}
+
+// Bar Chart Example
+var ctx = document.getElementById("differentialShift");
+var differentialShift = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: <?php echo json_encode($dswilayah); ?>,
+    datasets: [{
+      label: "Differential Shift",
+      backgroundColor: "#f6c23e",
+      hoverBackgroundColor: "#d1a638",
+      borderColor: "#f6c23e",
+      data: <?php echo json_encode($dss); ?>,
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    layout: {
+      padding: {
+        left: 10,
+        right: 25,
+        top: 25,
+        bottom: 0
+      }
+    },
+    scales: {
+      xAxes: [{
+        time: {
+          unit: 'month'
+        },
+        gridLines: {
+          display: false,
+          drawBorder: false
+        },
+        
+        maxBarThickness: 25,
+      }],
+      yAxes: [{
+        ticks: {
+          maxTicksLimit: 5,
+          padding: 10,
+          // Include a dollar sign in the ticks
+          callback: function(value, index, values) {
+            return '' + number_format(value);
+          }
+        },
+        gridLines: {
+          color: "rgb(234, 236, 244)",
+          zeroLineColor: "rgb(234, 236, 244)",
+          drawBorder: false,
+          borderDash: [2],
+          zeroLineBorderDash: [2]
+        }
+      }],
+    },
+    legend: {
+      display: false
+    },
+    tooltips: {
+      titleMarginBottom: 10,
+      titleFontColor: '#6e707e',
+      titleFontSize: 14,
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+      callbacks: {
+        label: function(tooltipItem, chart) {
+          var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+          return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
+        }
+      }
+    },
+  }
+});
+</script>
+
 <!-- Sankey Diagram -->
 <script>   
 Highcharts.chart('sankeycon', {
 
     title: {
-        text: 'Sankey Diagram'
+        text: ' '
     },
     accessibility: {
         point: {
-            valueDescriptionFormat: '{index}. {point.nama_wilayah} to {point.nama_sektor}, {point.pdrb}.'
+            valueDescriptionFormat: '{index}. {point.from} to {point.to}, {point.weight}.'
         }
     },
     series: [{
-        keys: ['nama_wilayah', 'nama_sektor', 'pdrb'],
-        data: <?php echo json_encode($sankey) ?>,
+        keys: ['from', 'to', 'weight'],
+        data: <?php echo json_encode($sankeys); ?>,
         type: 'sankey',
-        name: 'Sankey demo series'
+        name: 'Sankey distribusi PDRB'
     }]
 
 });
 </script>
+
+<!-- Stream Graph -->
+<script>
+var colors = Highcharts.getOptions().colors;
+Highcharts.chart('streamcon', {
+
+    chart: {
+        type: 'streamgraph',
+        marginBottom: 30,
+        zoomType: 'x'
+    },
+
+    // Make sure connected countries have similar colors
+    colors: [
+        colors[0],
+        colors[1],
+        colors[2],
+        colors[3],
+        colors[4],
+        // East Germany, West Germany and Germany
+        Highcharts.color(colors[5]).brighten(0.2).get(),
+        Highcharts.color(colors[5]).brighten(0.1).get(),
+
+        colors[5],
+        colors[6],
+        colors[7],
+        colors[8],
+        colors[9],
+        colors[0],
+        colors[1],
+        colors[3],
+        // Soviet Union, Russia
+        Highcharts.color(colors[2]).brighten(-0.1).get(),
+        Highcharts.color(colors[2]).brighten(-0.2).get(),
+        Highcharts.color(colors[2]).brighten(-0.3).get()
+    ],
+
+    title: {
+        floating: true,
+        align: 'left',
+        text: ' '
+    },
+    subtitle: {
+        floating: true,
+        align: 'left',
+        y: 30,
+        text: ' '
+    },
+
+    xAxis: {
+        maxPadding: 0,
+        type: 'category',
+        crosshair: true,
+        categories: <?php echo json_encode($streamc); ?>,
+        labels: {
+            align: 'left',
+            reserveSpace: false,
+            rotation: 270
+        },
+        lineWidth: 0,
+        margin: 20,
+        tickWidth: 0
+    },
+
+    yAxis: {
+        visible: false,
+        startOnTick: false,
+        endOnTick: false
+    },
+
+    legend: {
+        enabled: false
+    },
+
+    annotations: [{
+        labels: [{
+            point: {
+                x: 5.5,
+                xAxis: 0,
+                y: 30,
+                yAxis: 0
+            },
+            text: 'Cancelled<br>during<br>World War II'
+        }, {
+            point: {
+                x: 18,
+                xAxis: 0,
+                y: 90,
+                yAxis: 0
+            },
+            text: 'Soviet Union fell,<br>Germany united'
+        }],
+        labelOptions: {
+            backgroundColor: 'rgba(255,255,255,0.5)',
+            borderColor: 'silver'
+        }
+    }],
+
+    plotOptions: {
+        series: {
+            label: {
+                minFontSize: 5,
+                maxFontSize: 15,
+                style: {
+                    color: 'rgba(255,255,255,0.75)'
+                }
+            }
+        }
+    },
+
+    // Data parsed with olympic-medals.node.js
+    series: <?php echo json_encode($streams); ?>,
+
+    exporting: {
+        sourceWidth: 800,
+        sourceHeight: 600
+    }
+
+});
+</script>
+
 @endsection
 

@@ -5,6 +5,7 @@ namespace App\Imports;
 use App\Models\data;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Illuminate\Support\Facades\Auth;
 
 class dataImport implements ToModel, WithHeadingRow {
 
@@ -19,7 +20,8 @@ class dataImport implements ToModel, WithHeadingRow {
             'idWilayah' => $row['id_wilayah'],
             'idSektor' => $row['id_sektor'],
             'tahun' => $row['tahun'],
-            'pdrb' => $row['pdrb']
+            'pdrb' => $row['pdrb'],
+            'idUser' => Auth::id()
         ]);
     }
 

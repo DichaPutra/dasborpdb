@@ -10,7 +10,7 @@ class data extends Model {
     use HasFactory;
 
     protected $table = 'data';
-    protected $fillable = ['idWilayah', 'idSektor', 'tahun', 'pdrb'];
+    protected $fillable = ['idWilayah', 'idSektor', 'tahun', 'pdrb', 'idUser'];
     public $timestamps = false;
 
     public function wilayah()

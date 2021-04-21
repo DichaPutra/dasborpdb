@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\excelformatExport;
 use App\Imports\dataImport;
+use Illuminate\Support\Facades\Auth;
 
 class DataPdbController extends Controller {
 
@@ -31,9 +32,10 @@ class DataPdbController extends Controller {
         // data untuk dropdown wilayah
         $wilayah = wilayah::all();
         $wilayah2 = wilayah::all();
+        $id = Auth::id();
 
         //data untuk melihat semua data pdrb
-        $sql = 'SELECT * FROM `data` a, wilayah b, sektor c WHERE a.idWilayah = b.idWilayah AND a.idSektor = c.idSektor';
+        $sql = "SELECT * FROM `data` a, wilayah b, sektor c WHERE a.idWilayah = b.idWilayah AND a.idSektor = c.idSektor AND a.idUser = $id";
         $pdrb = DB::select($sql);
 
 //        dd($pdrb);
@@ -52,9 +54,10 @@ class DataPdbController extends Controller {
         // data untuk dropdown wilayah
         $wilayah = wilayah::all();
         $wilayah2 = wilayah::all();
+        $id = Auth::id();
 
         //data untuk melihat semua data pdrb
-        $sql = "SELECT * FROM `data` a, wilayah b, sektor c WHERE a.idWilayah = $wil AND a.tahun = $th AND a.idWilayah = b.idWilayah AND a.idSektor = c.idSektor";
+        $sql = "SELECT * FROM `data` a, wilayah b, sektor c WHERE a.idWilayah = $wil AND a.tahun = $th AND a.idWilayah = b.idWilayah AND a.idSektor = c.idSektor AND a.idUser = $id";
         $pdrb = DB::select($sql);
 
 //        dd($pdrb);

@@ -38,7 +38,7 @@ var nationalShare2 = new Chart(ctx, {
       backgroundColor: "#1cc88a",
       hoverBackgroundColor: "#17a673",
       borderColor: "#1cc88a",
-      data: [10, -50, 40, -22, 24, 88],
+      data: [70, -50, 40, -22, 24, 88, 12, 45, 65, 9, -14, 35, 49, -54, 23, -42, 78],
     }],
   },
   options: {

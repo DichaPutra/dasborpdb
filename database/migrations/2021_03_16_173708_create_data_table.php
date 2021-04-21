@@ -17,8 +17,9 @@ class CreateDataTable extends Migration
             $table->biginteger('idWilayah');
             $table->biginteger('idSektor');
             $table->biginteger('tahun');
-            $table->biginteger('pdrb');
-            $table->unique(['idWilayah', 'idSektor' , 'tahun']);
+            $table->double('pdrb', 15, 2);           
+            $table->integer('idUser');
+            $table->unique(['idWilayah', 'idSektor', 'tahun', 'idUser']);
         });
     }
 

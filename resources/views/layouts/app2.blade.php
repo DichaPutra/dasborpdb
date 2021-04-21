@@ -282,12 +282,12 @@
         <script src="code/modules/sankey.js"></script>
 
         <!-- Pie chart Wilayah Basis -->
-        <script src="{{ asset('js/demo/wilayahBasis.js') }}"></script>
+        <!--<script src="{{ asset('js/demo/wilayahBasis.js') }}"></script>-->
 
         <!-- National Share, Proportional Shift, Differential Shift scripts -->
-        <script src="{{ asset('js/demo/nationalShare.js') }}"></script>
-        <script src="{{ asset('js/demo/proportionalShift.js') }}"></script>
-        <script src="{{ asset('js/demo/differentialShift.js') }}"></script>
+        <!--<script src="{{ asset('js/demo/nationalShare.js') }}"></script>-->
+        <!--<script src="{{ asset('js/demo/proportionalShift.js') }}"></script>-->
+        <!--<script src="{{ asset('js/demo/differentialShift.js') }}"></script>-->
 
         <!-- ===============================================
         --- JS Dashboard Wilayah 
