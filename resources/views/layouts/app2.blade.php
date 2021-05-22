@@ -56,32 +56,8 @@
                 <!-- Divider -->
                 <hr class="sidebar-divider my-0">
 
-                <!-- Nav Item - Dashboard -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDashboard"
-                       aria-expanded="true" aria-controls="collapseDashboard">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Dashboard</span>
-                    </a>
-                    @yield('menu1')
-                </li>
-
-                <!-- Nav Item - Master Data -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                       aria-expanded="true" aria-controls="collapseTwo">
-                        <i class="fas fa-fw fa-database"></i>
-                        <span>Master Data</span>
-                    </a>
-                    @yield('menu2')
-                </li>
-
-                <!-- Nav Item - Panduan -->
-                <li class="nav-item">
-                    <a class="nav-link" href="panduan.php">
-                        <i class="fas fa-fw fa-wrench"></i>
-                        <span>Panduan</span></a>
-                </li>
+                <!-- Nav Menu -->
+                @yield('menu')
 
                 <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block">
@@ -134,7 +110,7 @@
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
                                     <img class="img-profile rounded-circle"
-                                         src="img/undraw_profile.svg">
+                                         src="{{ asset('img/undraw_profile.svg') }}">
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -143,9 +119,13 @@
                                         {{ __('Manage Account') }}
                                     </div>
 
-                                    <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                                    <a class="dropdown-item" href="{{ route('profile.show') }}">
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                         {{ __('Profile') }}
-                                    </x-jet-dropdown-link>
+                                    </a>                                    
+<!--                                    <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                                        {{ __('Profile') }}
+                                    </x-jet-dropdown-link>-->
 
                                     @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                     <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
@@ -156,15 +136,14 @@
                                     <div class="border-t border-gray-100"></div>
 
                                     <!-- Authentication -->
-                                    <form method="POST" action="{{ route('logout') }}">
+<!--                                    <form method="POST" action="{{ route('logout') }}">
                                         @csrf
-
                                         <x-jet-dropdown-link href="{{ route('logout') }}"
-                                                             onclick="event.preventDefault();
-    this.closest('form').submit();">
+                                            onclick="event.preventDefault();
+                                            this.closest('form').submit();">
                                             {{ __('Log Out') }}
                                         </x-jet-dropdown-link>
-                                    </form>
+                                    </form>-->
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -242,7 +221,6 @@
         <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-        {{ asset('') }}
         <!-- Core plugin JavaScript-->
         <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
@@ -271,15 +249,16 @@
         <script type="text/javascript" src="{{ asset('js/highcharts/highmaps.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/highcharts/exporting.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/highcharts/id-all.js') }}"></script>
-        <script src="code/highcharts.js"></script>
-        <script src="code/modules/streamgraph.js"></script>
-        <script src="code/modules/series-label.js"></script>
-        <script src="code/modules/annotations.js"></script>
-        <script src="code/modules/exporting.js"></script>
-        <script src="code/modules/export-data.js"></script>
-        <script src="code/modules/accessibility.js"></script>
-        <script src="code/highcharts.js"></script>
-        <script src="code/modules/sankey.js"></script>
+        <script src="{{ asset('code/highcharts.js') }}"></script>
+        <script src="{{ asset('code/modules/streamgraph.js') }}"></script>
+        <script src="{{ asset('code/modules/series-label.js') }}"></script>
+        <script src="{{ asset('code/modules/annotations.js') }}"></script>
+        <script src="{{ asset('code/modules/exporting.js') }}"></script>
+        <script src="{{ asset('code/modules/export-data.js') }}"></script>
+        <script src="{{ asset('code/modules/accessibility.js') }}"></script>
+        <script src="{{ asset('code/highcharts.js') }}"></script>
+        <script src="{{ asset('code/modules/sankey.js') }}"></script>
+        <script src="{{ asset('code/modules/treemap.js') }}"></script>
 
         <!-- Pie chart Wilayah Basis -->
         <!--<script src="{{ asset('js/demo/wilayahBasis.js') }}"></script>-->
@@ -289,20 +268,20 @@
         <!--<script src="{{ asset('js/demo/proportionalShift.js') }}"></script>-->
         <!--<script src="{{ asset('js/demo/differentialShift.js') }}"></script>-->
 
-        <!-- ===============================================
+        <!--===============================================
         --- JS Dashboard Wilayah 
-        --> ================================================
+         ================================================-->
 
         <!-- Line chart Laju PDRB Provinsi -->
-        <script src="{{ asset('js/demo/lajuPDRB.js') }}"></script>
+        <!--<script src="{{ asset('js/demo/lajuPDRB.js') }}"></script>-->
 
         <!-- Pie chart Sektor Basis -->
-        <script src="{{ asset('js/demo/sektorBasis.js') }}"></script> 
+        <!--<script src="{{ asset('js/demo/sektorBasis.js') }}"></script>--> 
 
         <!-- National Share, Proportional Shift, Differential Shift scripts -->
-        <script src="{{ asset('js/demo/nationalShare2.js') }}"></script>
-        <script src="{{ asset('js/demo/proportionalShift2.js') }}"></script>
-        <script src="{{ asset('js/demo/differentialShift2.js') }}"></script> 
+        <!--<script src="{{ asset('js/demo/nationalShare2.js') }}"></script>-->
+        <!--<script src="{{ asset('js/demo/proportionalShift2.js') }}"></script>-->
+        <!--<script src="{{ asset('js/demo/differentialShift2.js') }}"></script>--> 
 
 
 

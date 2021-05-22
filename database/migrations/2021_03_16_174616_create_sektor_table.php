@@ -15,7 +15,8 @@ class CreateSektorTable extends Migration {
     {
         //create table
         Schema::create('sektor', function (Blueprint $table) {
-            $table->bigIncrements('idSektor');
+            $table->integer('idSektor');
+            $table->primary('idSektor');
             $table->string('nama_sektor');
         });
 

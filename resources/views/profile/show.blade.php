@@ -1,23 +1,49 @@
 @extends('layouts.app2')
 
 
-@section('menu1')
-<div id="collapseDashboard" class="collapse" aria-labelledby="headingDashboard" data-parent="#accordionSidebar">
-    <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="{{route('KategoriSektor')}}">Kategori Sektor</a>
-        <a class="collapse-item" href="{{route('WilayahProvinsi')}}">Wilayah Provinsi</a>
+@section('menu')
+<!-- Nav Item - Dashboard -->
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDashboard"
+       aria-expanded="true" aria-controls="collapseDashboard">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Dashboard</span>
+    </a>
+    <div id="collapseDashboard" class="collapse" aria-labelledby="headingDashboard" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="{{route('KategoriSektor')}}">Kategori Sektor</a>
+            <a class="collapse-item" href="{{route('WilayahProvinsi')}}">Wilayah Provinsi</a>
+        </div>
     </div>
-</div>
-@endsection
+</li>
 
-
-@section('menu2')
-<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-    <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="{{route('DataKomoditi')}}">Data Komoditi</a>
-        <a class="collapse-item" href="{{route('DataPdb')}}">Data PDB</a>
+<!-- Nav Item - Master Data -->
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+       aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-fw fa-database"></i>
+        <span>Master Data</span>
+    </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="{{route('DataPdb')}}">Data PDRB</a>
+        </div>
     </div>
-</div>
+</li>
+
+<!-- Nav Item - Panduan -->
+<li class="nav-item">
+    <a class="nav-link" href="panduan.php">
+        <i class="fas fa-fw fa-wrench"></i>
+        <span>Panduan</span></a>
+</li>
+
+<!-- Nav Item - Tentang -->
+<li class="nav-item">
+    <a class="nav-link" href="panduan.php">
+        <i class="fas fa-fw fa-wrench"></i>
+        <span>Tentang</span></a>
+</li>
 @endsection
 
 @section('content')

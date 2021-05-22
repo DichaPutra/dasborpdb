@@ -11,8 +11,8 @@
     </a>
     <div id="collapseDashboard" class="collapse show" aria-labelledby="headingDashboard" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{route('KategoriSektor')}}">Kategori Sektor</a>
-            <a class="collapse-item active" href="{{route('WilayahProvinsi')}}">Wilayah Provinsi</a>
+            <a class="collapse-item" href="{{route('KategoriSektorLP')}}">Kategori Sektor</a>
+            <a class="collapse-item active" href="{{route('WilayahProvinsiLP')}}">Wilayah Provinsi</a>
         </div>
     </div>
 </li>
@@ -31,13 +31,6 @@
     </div>
 </li>
 
-<!-- Nav Item - Panduan -->
-<li class="nav-item">
-    <a class="nav-link" href="panduan.php">
-        <i class="fas fa-fw fa-wrench"></i>
-        <span>Panduan</span></a>
-</li>
-
 <!-- Nav Item - Tentang -->
 <li class="nav-item">
     <a class="nav-link" href="panduan.php">
@@ -49,7 +42,7 @@
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Dashboard {{ Auth::user()->name }}</h1>
+    <h1 class="h3 mb-0 text-gray-800">Guest Dashboard</h1>
 </div>
 
 <!-- Content Row -->
@@ -59,7 +52,7 @@
     <div class="col-lg-12 mb-4">
         <div class="card border-left-primary shadow h-100 py-2">
             <div class="card-body">
-                <form method="GET" enctype="multipart/form-data" action="{{ route('viewProvinsi') }}">
+                <form method="GET" enctype="multipart/form-data" action="{{ route('viewProvinsiLP') }}">
                     @csrf
                     <div class="row align-items-center">
                         <!-- Form View Pilih Wilayah -->

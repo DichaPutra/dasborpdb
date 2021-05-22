@@ -14,11 +14,14 @@ class CreateDataTable extends Migration
     public function up()
     {
         Schema::create('data', function (Blueprint $table) {
-            $table->biginteger('idWilayah');
-            $table->biginteger('idSektor');
-            $table->biginteger('tahun');
-            $table->double('pdrb', 15, 2);           
-            $table->integer('idUser');
+            $table->integer('idWilayah');
+            $table->foreign('idWilayah')->references('idWilayah')->on('wilayah');
+            $table->integer('idSektor');
+            $table->foreign('idSektor')->references('idSektor')->on('sektor');
+            $table->integer('tahun');
+            $table->double('pdrb', 20, 2);           
+            $table->unsignedBigInteger('idUser');
+            $table->foreign('idUser')->references('id')->on('users');
             $table->unique(['idWilayah', 'idSektor', 'tahun', 'idUser']);
         });
     }

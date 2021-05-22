@@ -8,6 +8,7 @@ use App\Http\Controllers\DataKomoditiController;
 use App\Http\Controllers\DataPdbController;
 use App\Http\Controllers\KategoriSektorController;
 use App\Http\Controllers\WilayahProvinsiController;
+use App\Http\Controllers\LandingPageController;
 
 /*
   |--------------------------------------------------------------------------
@@ -38,7 +39,12 @@ Auth::routes();
 /*
  * Landing Page
  */
-Route::get('/', [KategoriSektorController::class, 'index'])->name('home');
+Route::get('/', [LandingPageController::class, 'index'])->name('home');
+Route::get('KategoriSektorLP', [LandingPageController::class, 'index'])->name('KategoriSektorLP');
+Route::get('viewSektorLP', [LandingPageController::class, 'viewSektorLP'])->name('viewSektorLP');
+Route::get('WilayahProvinsiLP', [LandingPageController::class, 'index1'])->name('WilayahProvinsiLP');
+Route::get('viewProvinsiLP', [LandingPageController::class, 'viewProvinsiLP'])->name('viewProvinsiLP');
+
 Route::get('/dashboard', [KategoriSektorController::class, 'index'])->name('dashboard');
 
 Route::get('/contoh', [HomeController::class, 'index'])->name('contoh');
@@ -56,6 +62,7 @@ Route::get('viewSektor', [KategoriSektorController::class, 'viewSektor'])->name(
  * Wilayah Provinsi
  */
 Route::get('WilayahProvinsi', [WilayahProvinsiController::class, 'index'])->name('WilayahProvinsi');
+Route::get('viewProvinsi', [WilayahProvinsiController::class, 'viewProvinsi'])->name('viewProvinsi');
 
 /*
  * Data Komoditi
