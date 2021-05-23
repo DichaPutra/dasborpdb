@@ -8,7 +8,12 @@
         <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
             <word>Antara</word>
             <word>csrf</word>
+            <word>dihapus</word>
             <word>PDRB</word>
+            <word>tabel</word>
+            <word>tahun</word>
+            <word>Tambah</word>
+            <word>tersebut</word>
         </spellchecker-wordlist>
     </configuration>
 </project>

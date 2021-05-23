@@ -33,15 +33,15 @@
 
 <!-- Nav Item - Panduan -->
 <li class="nav-item">
-    <a class="nav-link" href="panduan.php">
+    <a class="nav-link" href="{{route('panduan')}}">
         <i class="fas fa-fw fa-wrench"></i>
         <span>Panduan</span></a>
 </li>
 
 <!-- Nav Item - Tentang -->
 <li class="nav-item">
-    <a class="nav-link" href="panduan.php">
-        <i class="fas fa-fw fa-wrench"></i>
+    <a class="nav-link" href="{{route('tentang')}}">
+        <i class="fas fa-fw fa-info-circle"></i>
         <span>Tentang</span></a>
 </li>
 @endsection
@@ -63,34 +63,38 @@
                     @csrf
                     <div class="row align-items-center">
                         <!-- Form View Pilih Wilayah -->
-                        <div class="form-group col-lg-6">
+                        <div class="form-group col-lg-6 mt-auto">
                             <label>Pilih Wilayah Provinsi</label>
-                            <select name="wilayah" class="form-control" onchange='this.form.submit()'>
+                            <select name="wilayah" class="form-control">
                                 @foreach ($wilayah as $wilayah)
                                 <option value="{{$wilayah->idWilayah}}" @if($wilayah->idWilayah == $wil) selected @endif>{{$wilayah->nama_wilayah}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <!-- Form View Pilih Tahun Analisis -->
-                        <div class="form-group col-lg-3">
+                        <div class="form-group col-lg-2 mt-auto">
                             <label>Tahun Analisis</label>
-                            <select name="tahuna" class="form-control" onchange='this.form.submit()'>
+                            <select name="tahuna" class="form-control">
                                 @foreach ($tahun as $tahuna)
                                 <option value="{{$tahuna->tahun}}" @if($tahuna->tahun == $tha) selected @endif>{{$tahuna->tahun}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <!-- Form View Pilih Tahun Dasar -->
-                        <div class="form-group col-lg-3">
+                        <div class="form-group col-lg-2 mt-auto">
                             <label>Tahun Dasar</label>
-                            <select name="tahund" class="form-control" onchange='this.form.submit()'>
+                            <select name="tahund" class="form-control">
                                 @foreach ($tahun as $tahund)
                                 <option value="{{$tahund->tahun}}" @if($tahund->tahun == $thd) selected @endif>{{$tahund->tahun}}</option>
                                 @endforeach
                             </select>
+                        </div>
+                        <!-- Form Submit -->
+                        <div class="form-group col-lg-2 mt-auto">
+                            <input type="submit" href="{{route('viewProvinsi')}}" class="btn btn-primary btn-block" value="Submit">
                         </div>                       
                         @if (session('error'))
-                        <div style="color: red;">{{Session::pull('error')}}</div>
+                        <div class="col" style="color: red;">{{Session::pull('error')}}</div>
                         @endif
                     </div>
                 </form>

@@ -36,8 +36,7 @@ class LandingPageController extends Controller {
         $sekt = NULL;
         $tha = NULL;
         $thd = NULL;
-        $wilayah = wilayah::all();
-        $sektor = sektor::all();
+        $wilayah = wilayah::all();        
         $map = NULL;
         $jpie = NULL;
         $cbasis = NULL;
@@ -60,6 +59,7 @@ class LandingPageController extends Controller {
         $maxds = NULL;
         $minds = NULL;
         $id = 1;
+        $sektor = DB::select("SELECT DISTINCT a.idSektor, b.nama_sektor FROM data a, sektor b WHERE a.idSektor = b.idSektor AND b.idSektor <> 18 AND a.idUser = $id ORDER BY b.idSektor ASC");
         $tahun = DB::select("SELECT DISTINCT tahun FROM data WHERE idUser = $id ORDER BY tahun DESC");
         
         return view('LpSektor',
@@ -73,18 +73,18 @@ class LandingPageController extends Controller {
         $sekt = $request->sektor;
         $tha = $request->tahuna;
         $thd = $request->tahund;
+        $id = 1;
         
         //peringatan
         if ($thd >= $tha){
-            Session::put('error', 'Tahun dasar tidak boleh melebihi tahun analisis');
+            Session::put('error', '*Tahun dasar harus lebih rendah dari tahun analisis');
             return back();
         }
         else {          
         
             //data untuk dropdown wilayah
             $wilayah = wilayah::all();
-            $sektor = sektor::all();
-            $id = 1;
+            $sektor = DB::select("SELECT DISTINCT a.idSektor, b.nama_sektor FROM data a, sektor b WHERE a.idSektor = b.idSektor AND b.idSektor <> 18 AND a.idUser = $id ORDER BY b.idSektor ASC");            
             $tahun = DB::select("SELECT DISTINCT tahun FROM data WHERE idUser = $id ORDER BY tahun DESC");
 
             //view pie chart
@@ -286,7 +286,7 @@ class LandingPageController extends Controller {
                 $streamc[] = "$i";
             }
 
-            //dd($maxlq);
+            //dd($sektor);
             return view('LpSektor',
                     ["tahun" => $tahun, "sekt" => $sekt, "thd" => $thd, "tha" => $tha, "wilayah" => $wilayah, "sektor" => $sektor, "jpie" => $jpie, "cbasis" => $cbasis, "cnonbasis" => $cnonbasis, "basis" => $basis, "nswilayah" => $nswilayah, "nss" => $nss, "pswilayah" => $pswilayah, "pss" => $pss, "dswilayah" => $dswilayah, "dss" => $dss, "sankeys" => $sankeys, "treemaps" => $treemaps, "streams" => $streams, "streamc" => $streamc, "maxlq" => $maxlq, "minlq" => $minlq, "smaxlq" => $smaxlq, "sminlq" => $sminlq, "maxns" => $maxns, "minns" => $minns, "smaxns" => $smaxns, "sminns" => $sminns, "maxps" => $maxps, "minps" => $minps, "smaxps" => $smaxps, "sminps" => $sminps, "maxds" => $maxds, "minds" => $minds, "smaxds" => $smaxds, "sminds" => $sminds]);
 
@@ -297,12 +297,11 @@ class LandingPageController extends Controller {
     {
         if (Auth::id()!= NULL)
         {
-            return redirect()->route('dashboard');
+            return redirect()->route('WilayahProvinsi');
         }        
         $wil = NULL;
         $tha = NULL;
-        $thd = NULL;
-        $wilayah = wilayah::all();
+        $thd = NULL;        
         $sektor = sektor::all();
         $tahunlc = NULL;
         $datalc = NULL;
@@ -325,6 +324,7 @@ class LandingPageController extends Controller {
         $maxds = NULL;
         $minds = NULL;
         $id = 1;
+        $wilayah = DB::select("SELECT DISTINCT a.idWilayah, b.nama_wilayah FROM data a, wilayah b WHERE a.idWilayah = b.idWilayah AND b.idWilayah <> 0 AND a.idUser = $id ORDER BY b.idWilayah ASC");
         $tahun = DB::select("SELECT DISTINCT tahun FROM data WHERE idUser = $id ORDER BY tahun DESC");
         
         return view('LpWilayah',
@@ -337,18 +337,18 @@ class LandingPageController extends Controller {
         $wil = $request->wilayah;
         $tha = $request->tahuna;
         $thd = $request->tahund;
+        $id = 1;
         
         //peringatan
         if ($thd >= $tha){
-            Session::put('error', 'Tahun dasar tidak boleh melebihi tahun analisis');
+            Session::put('error', '*Tahun dasar harus lebih rendah dari tahun analisis');
             return back();
         }
         else {        
         
             //data untuk dropdown wilayah
-            $wilayah = wilayah::all();
-            $sektor = sektor::all();
-            $id = 1;
+            $wilayah = DB::select("SELECT DISTINCT a.idWilayah, b.nama_wilayah FROM data a, wilayah b WHERE a.idWilayah = b.idWilayah AND b.idWilayah <> 0 AND a.idUser = $id ORDER BY b.idWilayah ASC");
+            $sektor = sektor::all();            
             $tahun = DB::select("SELECT DISTINCT tahun FROM data WHERE idUser = $id ORDER BY tahun DESC");
 
             //view line chart

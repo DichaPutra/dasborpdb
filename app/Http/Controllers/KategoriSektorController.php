@@ -31,7 +31,6 @@ class KategoriSektorController extends Controller {
         $tha = NULL;
         $thd = NULL;
         $wilayah = wilayah::all();
-        $sektor = sektor::all();
         $map = NULL;
         $jpie = NULL;
         $cbasis = NULL;
@@ -54,6 +53,7 @@ class KategoriSektorController extends Controller {
         $maxds = NULL;
         $minds = NULL;
         $id = Auth::id();
+        $sektor = DB::select("SELECT DISTINCT a.idSektor, b.nama_sektor FROM data a, sektor b WHERE a.idSektor = b.idSektor AND b.idSektor <> 18 AND a.idUser = $id ORDER BY b.idSektor ASC");
         $tahun = DB::select("SELECT DISTINCT tahun FROM data WHERE idUser = $id ORDER BY tahun DESC");
         
         return view('KategoriSektor',
@@ -67,18 +67,24 @@ class KategoriSektorController extends Controller {
         $sekt = $request->sektor;
         $tha = $request->tahuna;
         $thd = $request->tahund;
+        $id = Auth::id();
         
         //peringatan
         if ($thd >= $tha){
-            Session::put('error', 'Tahun dasar tidak boleh melebihi tahun analisis');
-            return back();
+            if (empty($thd)){
+                Session::put('error', '*Silahkan isi data terlebih dahulu');
+                return back();
+            }
+            else {
+                Session::put('error', '*Tahun dasar harus lebih rendah dari tahun analisis');
+                return back();
+            }
         }
         else {          
         
             //data untuk dropdown wilayah
             $wilayah = wilayah::all();
-            $sektor = sektor::all();
-            $id = Auth::id();
+            $sektor = DB::select("SELECT DISTINCT a.idSektor, b.nama_sektor FROM data a, sektor b WHERE a.idSektor = b.idSektor AND b.idSektor <> 18 AND a.idUser = $id ORDER BY b.idSektor ASC");            
             $tahun = DB::select("SELECT DISTINCT tahun FROM data WHERE idUser = $id ORDER BY tahun DESC");
 
             //view pie chart

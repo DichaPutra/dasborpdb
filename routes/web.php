@@ -78,5 +78,8 @@ Route::post('ImportData', [DataPdbController::class, 'ImportData'])->name('Impor
 Route::post('GenerateFormat', [DataPdbController::class, 'GenerateFormat'])->name('GenerateFormat');
 Route::post('pdbDelete',[DataPdbController::class, 'pdbDelete'])->name('pdbDelete');
 
-        
-
+/*
+ * Panduan & Tentang
+ */
+Route::view('/panduan', 'panduan')->name('panduan');        
+Route::view('/tentang', 'tentang')->name('tentang'); 

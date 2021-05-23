@@ -29,7 +29,6 @@ class WilayahProvinsiController extends Controller {
         $wil = NULL;
         $tha = NULL;
         $thd = NULL;
-        $wilayah = wilayah::all();
         $sektor = sektor::all();
         $tahunlc = NULL;
         $datalc = NULL;
@@ -52,6 +51,7 @@ class WilayahProvinsiController extends Controller {
         $maxds = NULL;
         $minds = NULL;
         $id = Auth::id();
+        $wilayah = DB::select("SELECT DISTINCT a.idWilayah, b.nama_wilayah FROM data a, wilayah b WHERE a.idWilayah = b.idWilayah AND b.idWilayah <> 0 AND a.idUser = $id ORDER BY b.idWilayah ASC");
         $tahun = DB::select("SELECT DISTINCT tahun FROM data WHERE idUser = $id ORDER BY tahun DESC");
         
         return view('WilayahProvinsi',
@@ -64,18 +64,24 @@ class WilayahProvinsiController extends Controller {
         $wil = $request->wilayah;
         $tha = $request->tahuna;
         $thd = $request->tahund;
+        $id = Auth::id();
         
         //peringatan
         if ($thd >= $tha){
-            Session::put('error', 'Tahun dasar tidak boleh melebihi tahun analisis');
-            return back();
+            if (empty($thd)){
+                Session::put('error', '*Silahkan isi data terlebih dahulu');
+                return back();
+            }
+            else {
+                Session::put('error', '*Tahun dasar harus lebih rendah dari tahun analisis');
+                return back();
+            }
         }
         else {        
         
             //data untuk dropdown wilayah
-            $wilayah = wilayah::all();
-            $sektor = sektor::all();
-            $id = Auth::id();
+            $wilayah = DB::select("SELECT DISTINCT a.idWilayah, b.nama_wilayah FROM data a, wilayah b WHERE a.idWilayah = b.idWilayah AND b.idWilayah <> 0 AND a.idUser = $id ORDER BY b.idWilayah ASC");
+            $sektor = sektor::all();            
             $tahun = DB::select("SELECT DISTINCT tahun FROM data WHERE idUser = $id ORDER BY tahun DESC");
 
             //view line chart

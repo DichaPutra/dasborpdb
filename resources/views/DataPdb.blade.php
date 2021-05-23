@@ -33,15 +33,15 @@
 
 <!-- Nav Item - Panduan -->
 <li class="nav-item">
-    <a class="nav-link" href="panduan.php">
+    <a class="nav-link" href="{{route('panduan')}}">
         <i class="fas fa-fw fa-wrench"></i>
         <span>Panduan</span></a>
 </li>
 
 <!-- Nav Item - Tentang -->
 <li class="nav-item">
-    <a class="nav-link" href="panduan.php">
-        <i class="fas fa-fw fa-wrench"></i>
+    <a class="nav-link" href="{{route('tentang')}}">
+        <i class="fas fa-fw fa-info-circle"></i>
         <span>Tentang</span></a>
 </li>
 @endsection

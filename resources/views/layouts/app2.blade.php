@@ -13,7 +13,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Dasbor PDB</title>
+        <title>Dasbor PDRB</title>
 
 
 
@@ -44,12 +44,12 @@
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('home')}}">
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-chart-pie"></i>
                     </div>
-                    <div class="sidebar-brand-text mx-3">
-                        Dasbor PDB
+                    <div class="sidebar-brand-text mx-2">
+                        Dasbor PDRB
                     </div>
                 </a>
 
